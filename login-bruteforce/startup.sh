@@ -15,10 +15,12 @@ else
 
     # Startup ncat listener
     now=$(date +%s)
-    tcpdump -i eno2 port not 22 -w logs/cap_$now.pcap &
-    ncat -l -p $1 -k -e startenv.sh 2> logs/log_$now.txt
+    tcpdump -i eth0 port not 22 -w logs/cap_$now.pcap &
+    ncat -l -p $1 -k -e login.sh
 
+	# just gonna test something
+    # tcpserver 157.230.191.49 $1 ./container_startup.sh 2> logs/log_$now.txt
     # Close port
-    iptables -I INPUT 1 -p tcp --dport $1 -j DENY
+    iptables -I INPUT 1 -p tcp --dport $1 -j DROP
 fi
 

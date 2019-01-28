@@ -30,3 +30,5 @@ if [ "$username" == "mnthomp22" ] && [ "$password" == "blink182" ]; then
 else
 	echo "Fail"
 fi
+
+exit 0
